@@ -1,0 +1,135 @@
+.tarot-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 20, 40, 0.65);
+  z-index: 1100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+}
+.tarot-modal {
+  position: relative;
+  min-width: 260px;
+  max-width: 95vw;
+  min-height: 320px;
+  max-height: 90vh;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.13);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.18), 0 2px 8px #8b5cf6;
+  padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.tarot-modal-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.5rem;
+  background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+  color: #fff;
+  border: 2px solid #fffbe6;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 16px #f59e0b88;
+  z-index: 1001;
+  transition: color 0.2s, background 0.2s;
+}
+.tarot-modal-close:hover {
+  background: linear-gradient(135deg, #8b5cf6, #f59e0b);
+  color: #fffbe6;
+}
+.tarot-card-flip {
+  width: 220px;
+  height: 340px;
+  perspective: 1200px;
+  position: relative;
+  margin: 0 auto;
+  margin-top: 1.2rem;
+}
+.tarot-card-front, .tarot-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  border-radius: 18px;
+  box-shadow: 0 8px 32px #8b5cf655, 0 2px 8px #f59e0b33;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+  background: linear-gradient(135deg, #f9f6e3 60%, #a78bfa 100%);
+  transition: box-shadow 0.3s, background 0.3s;
+}
+.tarot-card-front {
+  color: #8b5cf6;
+  z-index: 2;
+}
+.tarot-card-back {
+  transform: rotateY(180deg);
+  flex-direction: column;
+  padding: 2.2rem 1.2rem 1.5rem 1.2rem;
+  color: #3b2f13;
+  background: linear-gradient(135deg, #f9f6e3 80%, #f59e0b 100%);
+  z-index: 3;
+}
+.tarot-card-title {
+  font-family: 'IM Fell English', 'Caveat', cursive, serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #8b5cf6;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+.tarot-card-message {
+  font-family: 'Caveat', 'IM Fell English', cursive, serif;
+  font-size: 1.15rem;
+  color: #3b2f13;
+  text-align: center;
+  margin-top: 0.5rem;
+}
+.tarot-draw-again-btn {
+  margin-top: 1.5rem;
+  background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+  color: #fff;
+  border: none;
+  border-radius: 14px;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  font-family: 'IM Fell English', serif;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #f59e0b55;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.tarot-draw-again-btn:hover {
+  background: linear-gradient(135deg, #8b5cf6, #f59e0b);
+  color: #fffbe6;
+  transform: scale(1.04);
+}
+.tarot-card-flip {
+  transition: transform 0.7s cubic-bezier(0.77,0,0.18,1);
+  transform-style: preserve-3d;
+}
+.tarot-card-flip.flipped {
+  transform: rotateY(180deg);
+}
+@media (max-width: 600px) {
+  .tarot-modal {
+    min-width: 160px;
+    padding: 1rem 0.5rem 0.7rem 0.5rem;
+  }
+  .tarot-card-flip {
+    width: 90vw;
+    height: 60vw;
+    min-width: 140px;
+    min-height: 180px;
+    max-width: 98vw;
+    max-height: 70vh;
+  }
+} 

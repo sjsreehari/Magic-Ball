@@ -1,0 +1,122 @@
+.answer-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(30, 20, 40, 0.65);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s;
+}
+.answer-modal {
+  position: relative;
+  min-width: 320px;
+  max-width: 95vw;
+  min-height: 220px;
+  max-height: 90vh;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.13);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.18), 0 2px 8px #8b5cf6;
+  padding: 2.2rem 2.2rem 1.5rem 2.2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: visible;
+}
+.answer-modal-close {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.5rem;
+  background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+  color: #fff;
+  border: 2px solid #fffbe6;
+  border-radius: 50%;
+  width: 2.2rem;
+  height: 2.2rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 0 16px #f59e0b88;
+  z-index: 1001;
+  transition: color 0.2s, background 0.2s;
+}
+.answer-modal-close:hover {
+  background: linear-gradient(135deg, #8b5cf6, #f59e0b);
+  color: #fffbe6;
+}
+.answer-scroll {
+  background: #f9f6e3;
+  border: 2.5px solid #f59e0b;
+  border-radius: 22px 18px 24px 20px/20px 24px 18px 22px;
+  box-shadow: 0 8px 32px rgba(80, 60, 20, 0.18), 0 2px 8px #d6c7a1;
+  padding: 2rem 1.5rem 1.2rem 1.5rem;
+  font-family: 'IM Fell English', 'Caveat', 'Dancing Script', cursive, serif;
+  font-size: 1.25rem;
+  color: #3b2f13;
+  position: relative;
+  overflow: visible;
+  min-width: 220px;
+  max-width: 90vw;
+  animation: fadeIn 0.7s;
+}
+.answer-scroll-title {
+  font-size: 1.3rem;
+  color: #f59e0b;
+  font-family: 'Dancing Script', 'IM Fell English', cursive, serif;
+  text-align: center;
+  margin-bottom: 1.2rem;
+  text-shadow: 0 0 18px #fffbe6, 0 2px 8px #f59e0b44;
+}
+.answer-scroll-typewriter {
+  font-family: 'IM Fell English', 'Caveat', 'Dancing Script', cursive, serif;
+  font-size: 1.2rem;
+  color: #3b2f13;
+  background: none;
+  border: none;
+  padding: 0.5rem 0;
+  border-radius: 0;
+  box-shadow: none;
+  line-height: 1.7;
+  text-shadow: 0 1px 0 #f3e9c7, 0 2px 2px #e2d3b1;
+  letter-spacing: 0.02em;
+  animation: typewriter 2.2s steps(30, end) 1;
+  white-space: pre-line;
+}
+@keyframes typewriter {
+  from { width: 0; opacity: 0.7; }
+  to { width: 100%; opacity: 1; }
+}
+.answer-scroll-actions {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+.answer-copy-btn, .answer-share-btn, .answer-fav-btn {
+  background: linear-gradient(135deg, #8b5cf6, #f59e0b);
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 0.5rem 1.2rem;
+  font-size: 1rem;
+  font-family: inherit;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 8px #8b5cf655;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+}
+.answer-copy-btn:hover, .answer-share-btn:hover, .answer-fav-btn:hover {
+  background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+  color: #fffbe6;
+  transform: scale(1.04);
+}
+@media (max-width: 600px) {
+  .answer-modal {
+    min-width: 160px;
+    padding: 1rem 0.5rem 0.7rem 0.5rem;
+  }
+  .answer-scroll {
+    padding: 1rem 0.5rem 0.7rem 0.5rem;
+    font-size: 1rem;
+  }
+} 

@@ -6,14 +6,15 @@
 }
 
 body {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  color: #fff;
+  font-family: 'Inter', 'IM Fell English', 'Caveat', 'Dancing Script', cursive, serif, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background: #0f0f23;
-  color: #ffffff;
-  overflow-x: hidden;
 }
 
 code {
@@ -122,5 +123,264 @@ input:focus {
 @media (max-width: 480px) {
   body {
     font-size: 13px;
+  }
+}
+
+.name-step-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+  position: relative;
+  z-index: 100;
+}
+
+.name-step-box {
+  background: rgba(26, 26, 46, 0.95);
+  border-radius: 24px;
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.18), 0 2px 8px #8b5cf6;
+  padding: 2.5rem 2.5rem 2rem 2.5rem;
+  text-align: center;
+  max-width: 350px;
+  width: 100%;
+  border: 2px solid #8b5cf6;
+  animation: fadeIn 0.7s;
+}
+
+.magic-greeting {
+  font-family: 'Dancing Script', 'Caveat', 'IM Fell English', cursive, serif;
+  font-size: 2.1rem;
+  color: #f59e0b;
+  margin-bottom: 1.5rem;
+  text-shadow: 0 0 18px #fffbe6, 0 2px 8px #f59e0b44;
+}
+
+.magic-label {
+  font-size: 1.1rem;
+  color: #e2e8f0;
+  font-family: 'IM Fell English', serif;
+  margin-bottom: 0.7rem;
+  display: block;
+}
+
+.magic-name-input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border-radius: 14px;
+  border: 2px solid #8b5cf6;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-size: 1.1rem;
+  margin-bottom: 1.2rem;
+  font-family: 'Caveat', 'IM Fell English', cursive, serif;
+  transition: border 0.2s, box-shadow 0.2s;
+  box-shadow: 0 2px 8px rgba(139, 92, 246, 0.08);
+}
+.magic-name-input:focus {
+  outline: none;
+  border-color: #f59e0b;
+  box-shadow: 0 0 0 3px #f59e0b33;
+}
+
+.magic-name-btn {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 0.9rem 2.2rem;
+  font-size: 1.1rem;
+  font-family: 'IM Fell English', serif;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  box-shadow: 0 4px 16px rgba(139, 92, 246, 0.18);
+}
+.magic-name-btn:hover {
+  background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+  color: #fffbe6;
+  transform: translateY(-2px) scale(1.04);
+}
+
+.skip-to-content {
+  position: absolute;
+  left: -999px;
+  top: auto;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  z-index: 10000;
+  background: #8b5cf6;
+  color: #fff;
+  padding: 0.7rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  transition: left 0.2s;
+}
+.skip-to-content:focus {
+  left: 16px;
+  top: 16px;
+  width: auto;
+  height: auto;
+  outline: 2px solid #f59e0b;
+  outline-offset: 2px;
+  box-shadow: 0 2px 8px #8b5cf6;
+}
+
+.magic-app-container {
+  min-height: 100vh;
+  width: 100vw;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  justify-content: flex-start;
+  background: transparent;
+  z-index: 1;
+  transition: background 0.7s cubic-bezier(0.77,0,0.18,1);
+}
+.glass {
+  background: rgba(30, 20, 50, 0.45);
+  backdrop-filter: blur(22px) saturate(1.3);
+  border-radius: 32px;
+  box-shadow: 0 12px 48px rgba(139, 92, 246, 0.22), 0 2px 12px #8b5cf6;
+  border: 1.5px solid rgba(255,255,255,0.13);
+  transition: background 0.5s, box-shadow 0.5s;
+}
+.magic-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2.2rem 3.5rem 1.7rem 3.5rem;
+  position: relative;
+  z-index: 10;
+  margin-bottom: 1.2rem;
+  background: rgba(30, 20, 50, 0.25);
+  box-shadow: 0 4px 24px #8b5cf633;
+  border-radius: 0 0 32px 32px;
+  animation: fadeInDown 0.7s;
+}
+@keyframes fadeInDown {
+  from { opacity: 0; transform: translateY(-40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.magic-title {
+  font-size: 2.7rem;
+  font-family: 'Dancing Script', 'IM Fell English', cursive, serif;
+  color: #f59e0b;
+  text-shadow: 0 0 24px #fffbe6, 0 2px 12px #f59e0b44;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  transition: color 0.3s;
+}
+.magic-nav {
+  display: flex;
+  gap: 1.7rem;
+}
+.magic-nav button {
+  background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+  color: #fff;
+  border: none;
+  border-radius: 16px;
+  padding: 1rem 2.5rem;
+  font-size: 1.2rem;
+  font-family: 'IM Fell English', serif;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 12px #8b5cf655;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  outline: none;
+}
+.magic-nav button:hover, .magic-nav button:focus {
+  background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+  color: #fffbe6;
+  transform: scale(1.06);
+}
+.magic-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 3.5rem 2.2rem 3.5rem 2.2rem;
+  min-height: 60vh;
+  z-index: 2;
+  animation: fadeInUp 0.7s;
+}
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+/* Bottom nav for mobile */
+.magic-bottom-nav {
+  display: none;
+}
+@media (max-width: 900px) {
+  .magic-header {
+    padding: 1.2rem 1rem 1rem 1rem;
+    border-radius: 0 0 24px 24px;
+  }
+  .magic-title {
+    font-size: 2rem;
+  }
+  .magic-nav button {
+    padding: 0.7rem 1.2rem;
+    font-size: 1rem;
+  }
+  .magic-main {
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+  }
+}
+@media (max-width: 600px) {
+  .magic-header {
+    flex-direction: column;
+    gap: 0.7rem;
+    padding: 1rem 0.5rem 0.7rem 0.5rem;
+    border-radius: 0 0 18px 18px;
+  }
+  .magic-title {
+    font-size: 1.3rem;
+  }
+  .magic-nav {
+    display: none;
+  }
+  .magic-main {
+    padding: 0.7rem 0.1rem 0.7rem 0.1rem;
+  }
+  .magic-bottom-nav {
+    display: flex;
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 100;
+    background: rgba(30, 20, 50, 0.85);
+    box-shadow: 0 -2px 24px #8b5cf633;
+    border-radius: 18px 18px 0 0;
+    width: 100vw;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0.7rem 0.2rem;
+    gap: 0.2rem;
+    animation: fadeInUp 0.7s;
+  }
+  .magic-bottom-nav button {
+    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    color: #fff;
+    border: none;
+    border-radius: 12px;
+    padding: 0.7rem 1.2rem;
+    font-size: 1.1rem;
+    font-family: 'IM Fell English', serif;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #8b5cf655;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+    outline: none;
+  }
+  .magic-bottom-nav button:focus, .magic-bottom-nav button:hover {
+    background: linear-gradient(135deg, #f59e0b, #8b5cf6);
+    color: #fffbe6;
+    transform: scale(1.06);
   }
 }

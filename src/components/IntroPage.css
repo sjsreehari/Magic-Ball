@@ -308,4 +308,38 @@
     font-size: 3rem;
   }
 }
+
+.destiny-cta {
+  margin: 2.2rem 0 1.2rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  animation: fadeIn 1s 0.5s both;
+}
+.cta-main {
+  font-family: 'Dancing Script', 'Caveat', 'IM Fell English', cursive, serif;
+  font-size: 2.2rem;
+  color: #f59e0b;
+  text-shadow: 0 0 18px #fffbe6, 0 2px 8px #f59e0b44;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-bottom: 0.1em;
+}
+.cta-sub {
+  font-size: 1.1rem;
+  color: #ffe082;
+  font-family: 'Caveat', 'IM Fell English', cursive, serif;
+  text-shadow: 0 1px 8px #f59e0b33;
+  font-style: italic;
+}
+
+@media (max-width: 600px) {
+  .cta-main {
+    font-size: 1.3rem;
+  }
+  .cta-sub {
+    font-size: 0.95rem;
+  }
+}
   

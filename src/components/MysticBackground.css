@@ -1,0 +1,10 @@
+.mystic-bg-canvas {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, rgba(30,20,40,0.7) 0%, rgba(15,15,35,0.98) 100%);
+  box-shadow: 0 0 120px 40px #8b5cf6aa inset, 0 0 180px 60px #f59e0b33 inset;
+} 

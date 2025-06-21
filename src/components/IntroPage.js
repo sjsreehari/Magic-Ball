@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import './IntroPage.css';
 
-const IntroPage = ({ onStart }) => {
+const IntroPage = ({ onStart, userName }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [showParticles, setShowParticles] = useState(false);
 
@@ -10,11 +10,6 @@ const IntroPage = ({ onStart }) => {
     setIsVisible(true);
     setTimeout(() => setShowParticles(true), 500);
   }, []);
-
-  const handleStart = () => {
-    setIsVisible(false);
-    setTimeout(onStart, 500);
-  };
 
   return (
     <div className={`intro-page ${isVisible ? 'visible' : ''}`}>
@@ -40,35 +35,46 @@ const IntroPage = ({ onStart }) => {
           <span className="title-line">Welcome to the</span>
           <span className="title-highlight">Magic Ball</span>
         </h1>
-        
-        <p className="intro-description">
-          Ask any question and let the mystical forces reveal your destiny! 
-          The Magic Ball holds ancient wisdom and cosmic insights.
-        </p>
-        
-        <div className="features">
-          <div className="feature">
-            <span className="feature-icon">✨</span>
-            <span>Mystical Answers</span>
+
+        {userName && (
+          <div className="magical-name-welcome">
+            <span className="magical-name">Welcome, {userName}!</span>
           </div>
-          <div className="feature">
-            <span className="feature-icon">🌟</span>
-            <span>Cosmic Wisdom</span>
-          </div>
-          <div className="feature">
-            <span className="feature-icon">🔮</span>
-            <span>Destiny Revealed</span>
-          </div>
-        </div>
-        
-        <button className="start-button" onClick={handleStart}>
-          <span className="button-text">Begin Your Journey</span>
-          <span className="button-icon">→</span>
-        </button>
-        
-        <div className="intro-footer">
-          <p>Ready to discover what the universe has in store for you?</p>
-        </div>
+        )}
+
+        {userName && (
+          <>
+            <div className="destiny-cta">
+              <span className="cta-main">Find Your Destiny</span>
+              <span className="cta-sub">Ask your question and let the magic unfold...</span>
+            </div>
+            <p className="intro-description">
+              Ask any question and let the mystical forces reveal your destiny! 
+              The Magic Ball holds ancient wisdom and cosmic insights.
+            </p>
+            <div className="features">
+              <div className="feature">
+                <span className="feature-icon">✨</span>
+                <span>Mystical Answers</span>
+              </div>
+              <div className="feature">
+                <span className="feature-icon">🌟</span>
+                <span>Cosmic Wisdom</span>
+              </div>
+              <div className="feature">
+                <span className="feature-icon">🔮</span>
+                <span>Destiny Revealed</span>
+              </div>
+            </div>
+            <button className="start-button" onClick={onStart}>
+              <span className="button-text">Begin Your Journey</span>
+              <span className="button-icon">→</span>
+            </button>
+            <div className="intro-footer">
+              <p>Ready to discover what the universe has in store for you?</p>
+            </div>
+          </>
+        )}
       </div>
     </div>
   );
