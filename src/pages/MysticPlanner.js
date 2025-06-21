@@ -3,19 +3,24 @@ import { Calendar, Plus, Trash2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function MysticPlanner() {
-  const { settings } = useApp();
-  const [items, setItems] = useState([]);
+  const { planner, addPlannerItem, removePlannerItem, user } = useApp();
   const [input, setInput] = useState('');
+  const [showSignIn, setShowSignIn] = useState(false);
+
+  React.useEffect(() => {
+    if (!user) setShowSignIn(true);
+  }, [user]);
 
   const addItem = () => {
     if (!input.trim()) return;
-    setItems([{ text: input, date: new Date().toLocaleString() }, ...items]);
+    addPlannerItem({ text: input, date: new Date().toLocaleString() });
     setInput('');
   };
 
-  const removeItem = (idx) => {
-    setItems(items.filter((_, i) => i !== idx));
-  };
+  if (showSignIn) {
+    const SignUpModal = require('../components/SignUpModal').default;
+    return <SignUpModal onClose={() => setShowSignIn(false)} />;
+  }
 
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-4 pb-24">
@@ -43,16 +48,16 @@ export default function MysticPlanner() {
           </button>
         </div>
         <div className="space-y-2">
-          {items.length === 0 ? (
+          {planner.length === 0 ? (
             <div className="text-white/70">No tasks yet. Add your first mystical task!</div>
           ) : (
-            items.map((item, idx) => (
+            planner.map((item, idx) => (
               <div key={idx} className="flex items-center justify-between bg-white/5 rounded-lg p-3 border border-white/20">
                 <div className="text-white text-left">
                   <div>{item.text}</div>
                   <div className="text-xs text-white/50">{item.date}</div>
                 </div>
-                <button onClick={() => removeItem(idx)} className="p-2 rounded-full hover:bg-white/10 text-white">
+                <button onClick={() => removePlannerItem(idx)} className="p-2 rounded-full hover:bg-white/10 text-white">
                   <Trash2 size={16} />
                 </button>
               </div>
@@ -62,4 +67,4 @@ export default function MysticPlanner() {
       </div>
     </div>
   );
-} 
+}

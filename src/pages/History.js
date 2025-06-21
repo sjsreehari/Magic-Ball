@@ -3,9 +3,14 @@ import { Search, Calendar, Download, Copy } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function History() {
-  const { questions } = useApp();
+  const { questions, user } = useApp();
   const [searchTerm, setSearchTerm] = useState('');
   const [sortBy, setSortBy] = useState('newest');
+  const [showSignIn, setShowSignIn] = useState(false);
+
+  React.useEffect(() => {
+    if (!user) setShowSignIn(true);
+  }, [user]);
 
   const filteredQuestions = questions
     .filter(q => 
@@ -38,6 +43,11 @@ export default function History() {
   const copyQuestion = (question, answer) => {
     navigator.clipboard.writeText(`Q: ${question}\nA: ${answer}`);
   };
+
+  if (showSignIn) {
+    const SignUpModal = require('../components/SignUpModal').default;
+    return <SignUpModal onClose={() => setShowSignIn(false)} />;
+  }
 
   return (
     <div className="min-h-screen p-6 pb-32">
@@ -136,4 +146,4 @@ export default function History() {
       </div>
     </div>
   );
-} 
+}

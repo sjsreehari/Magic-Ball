@@ -1,9 +1,12 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { auth, db } from '../firebase';
+import { onAuthStateChanged } from 'firebase/auth';
+import { doc, setDoc, getDoc, updateDoc, arrayUnion } from 'firebase/firestore';
 
 const AppContext = createContext();
 
 const defaultSettings = {
-  theme: 'cosmic',
+  theme: 'dark',
   soundEnabled: true,
   hapticsEnabled: true,
   selectedPersona: 'Cosmic Oracle',
@@ -19,17 +22,31 @@ export function AppProvider({ children }) {
   const [questions, setQuestions] = useState([]);
   const [settings, setSettings] = useState(defaultSettings);
   const [onlineUsers, setOnlineUsers] = useState(127);
+  const [user, setUser] = useState(null);
+  const [firstQuestionAsked, setFirstQuestionAsked] = useState(false);
+  const [planner, setPlanner] = useState([]);
 
   useEffect(() => {
-    // Load from localStorage
-    const savedQuestions = localStorage.getItem('magicBallQuestions');
-    const savedSettings = localStorage.getItem('magicBallSettings');
-    if (savedQuestions) {
-      setQuestions(JSON.parse(savedQuestions));
-    }
-    if (savedSettings) {
-      setSettings({ ...defaultSettings, ...JSON.parse(savedSettings) });
-    }
+    const unsub = onAuthStateChanged(auth, async (u) => {
+      setUser(u);
+      if (u) {
+        // Load user data from Firestore
+        const docRef = doc(db, 'users', u.uid);
+        const snap = await getDoc(docRef);
+        if (snap.exists()) {
+          const data = snap.data();
+          setQuestions(data.questions || []);
+          setPlanner(data.planner || []);
+        } else {
+          await setDoc(docRef, { questions: [], planner: [] });
+          setQuestions([]);
+          setPlanner([]);
+        }
+      } else {
+        setQuestions([]);
+        setPlanner([]);
+      }
+    });
     // Simulate live user count updates
     const interval = setInterval(() => {
       setOnlineUsers(prev => {
@@ -37,10 +54,10 @@ export function AppProvider({ children }) {
         return Math.max(50, Math.min(500, prev + change));
       });
     }, 3000);
-    return () => clearInterval(interval);
+    return () => { unsub(); clearInterval(interval); };
   }, []);
 
-  const addQuestion = (question, answer, persona) => {
+  const addQuestion = async (question, answer, persona) => {
     const newQuestion = {
       id: Date.now().toString(),
       question,
@@ -50,13 +67,36 @@ export function AppProvider({ children }) {
     };
     const updatedQuestions = [newQuestion, ...questions];
     setQuestions(updatedQuestions);
-    localStorage.setItem('magicBallQuestions', JSON.stringify(updatedQuestions));
+    setFirstQuestionAsked(true);
+    if (user) {
+      const docRef = doc(db, 'users', user.uid);
+      await updateDoc(docRef, { questions: updatedQuestions });
+    } else {
+      localStorage.setItem('magicBallQuestions', JSON.stringify(updatedQuestions));
+    }
   };
 
   const updateSettings = (newSettings) => {
     const updatedSettings = { ...settings, ...newSettings };
     setSettings(updatedSettings);
     localStorage.setItem('magicBallSettings', JSON.stringify(updatedSettings));
+  };
+
+  const addPlannerItem = async (item) => {
+    const updated = [item, ...planner];
+    setPlanner(updated);
+    if (user) {
+      const docRef = doc(db, 'users', user.uid);
+      await updateDoc(docRef, { planner: updated });
+    }
+  };
+  const removePlannerItem = async (idx) => {
+    const updated = planner.filter((_, i) => i !== idx);
+    setPlanner(updated);
+    if (user) {
+      const docRef = doc(db, 'users', user.uid);
+      await updateDoc(docRef, { planner: updated });
+    }
   };
 
   return (
@@ -67,6 +107,12 @@ export function AppProvider({ children }) {
       updateSettings,
       onlineUsers,
       setOnlineUsers,
+      user,
+      firstQuestionAsked,
+      setFirstQuestionAsked,
+      planner,
+      addPlannerItem,
+      removePlannerItem,
     }}>
       {children}
     </AppContext.Provider>
@@ -79,4 +125,4 @@ export function useApp() {
     throw new Error('useApp must be used within an AppProvider');
   }
   return context;
-} 
+}

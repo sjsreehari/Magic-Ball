@@ -1,11 +1,17 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Navigation from './Navigation';
 import { useApp } from '../context/AppContext';
+import SignUpPage from './SignUpPage';
 
 export default function Layout({ children }) {
-  const { settings } = useApp();
+  const { user, settings } = useApp();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  if (!user) {
+    return <SignUpPage />;
+  }
 
   const getThemeClasses = () => {
     switch (settings.theme) {
@@ -51,8 +57,8 @@ export default function Layout({ children }) {
           {children}
         </main>
         {/* Only show navigation on non-home pages */}
-        {location.pathname !== '/' && <Navigation />}
+        {location.pathname !== '/' && user && <Navigation />}
       </div>
     </div>
   );
-} 
+}
