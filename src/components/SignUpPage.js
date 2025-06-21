@@ -32,13 +32,13 @@ export default function SignUpPage() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center px-4 pb-24 bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-900 relative overflow-hidden">
+    <div className="min-h-screen flex flex-col items-center justify-center px-4 pb-24 bg-gradient-to-br from-gray-900 to-black relative overflow-hidden">
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
         <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
         <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
       </div>
-      <div className="max-w-md w-full bg-white/10 backdrop-blur-sm rounded-xl p-8 border border-white/20 text-center space-y-6 relative z-10">
+      <div className="max-w-md w-full bg-black/70 backdrop-blur-sm rounded-xl p-8 border border-white/20 text-center space-y-6 relative z-10 shadow-2xl">
         <h1 className="text-3xl font-bold text-white bg-gradient-to-r from-purple-400 to-cyan-400 bg-clip-text text-transparent mb-2">
           {isSignIn ? "Sign In" : "Sign Up"}
         </h1>
@@ -49,7 +49,7 @@ export default function SignUpPage() {
             value={email}
             onChange={e => setEmail(e.target.value)}
             required
-            className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="w-full p-3 rounded-lg bg-gray-800 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           <input
             type="password"
@@ -57,7 +57,7 @@ export default function SignUpPage() {
             value={password}
             onChange={e => setPassword(e.target.value)}
             required
-            className="w-full p-3 rounded-lg bg-white/10 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400"
+            className="w-full p-3 rounded-lg bg-gray-800 border border-white/20 text-white placeholder-white/50 focus:outline-none focus:ring-2 focus:ring-purple-400"
           />
           {error && <div style={{ color: "#ef4444", fontSize: 14 }}>{error}</div>}
           <button type="submit" className="w-full py-3 px-6 bg-gradient-to-r from-purple-500 to-cyan-500 text-white font-semibold rounded-xl hover:from-purple-600 hover:to-cyan-600 transition-all duration-200">
