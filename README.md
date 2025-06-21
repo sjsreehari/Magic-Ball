@@ -1,21 +1,21 @@
 # Magic Ball - Learning Project
 
-This project was created as a hands-on way to learn and practice several modern web development tools and APIs. The main goal was to build a beautiful, interactive Magic 8 Ball app with mystical AI-powered answers, while exploring the following technologies:
+This project is a modern Magic 8 Ball web app built to learn and practice:
+- **React** (UI, hooks, context)
+- **Tailwind CSS** (styling)
+- **Firebase** (authentication, Firestore database)
+- **Mistral AI API** (AI-powered answers)
+- **Web Audio API** (sound effects)
+- **React Router** (multi-page navigation)
 
-## 🛠️ Main Tools & Technologies Used
-
-- **React**: For building the user interface and managing state with hooks and context.
-- **Tailwind CSS**: For rapid, utility-first styling and responsive design.
-- **Mistral AI API**: To generate mystical, AI-powered answers to user questions.
-- **Web Audio API**: For custom sound effects and immersive audio feedback.
-- **React Router**: For multi-page navigation and routing.
-
-## ✨ What You Can Learn From This Project
-- How to use React functional components, hooks, and context for state management.
-- How to style modern UIs with Tailwind CSS and custom CSS modules.
-- How to call external APIs (like Mistral AI) and handle async data.
-- How to add sound effects and haptic feedback using browser APIs.
-- How to structure a multi-page React app with React Router.
+## ✨ Features
+- **Sign Up / Sign In** required to use the app (Google or Email)
+- **Dark mode** by default for all users
+- **Ask mystical questions** and get AI or fallback answers
+- **Personal question history** and **planner** stored securely in Firestore, only accessible to you
+- **Modern, responsive UI** with glassmorphism, gradients, and cosmic effects
+- **Sound effects and haptic feedback**
+- **Share answers** and view your own history
 
 ## 🚀 Getting Started
 
@@ -41,28 +41,26 @@ This project was created as a hands-on way to learn and practice several modern 
 5. **Open your browser**
    Go to `http://localhost:3000`
 
+## 🔒 Firebase Security
+- All user data (history, planner) is stored in Firestore and only accessible to the signed-in user.
+- Firestore rules:
+  ```
+  rules_version = '2';
+  service cloud.firestore {
+    match /databases/{database}/documents {
+      match /users/{userId} {
+        allow read, write: if request.auth != null && request.auth.uid == userId;
+      }
+    }
+  }
+  ```
+
 ## 📚 Project Structure
-- `src/components/` — UI components (MagicBall, AnswerModal, Gallery, etc.)
-- `src/pages/` — Main app pages (Home, History, CharacterMode, etc.)
-- `src/api.js` — Handles API calls and fallback answers
+- `src/components/` — UI components (MagicBall, AnswerModal, Gallery, SignUpPage, etc.)
+- `src/pages/` — Main app pages (Home, History, MysticPlanner, etc.)
 - `src/context/` — App-wide context and state
-- `src/index.js` — App entry point
-
-## 🧪 Features
-- Ask questions and get mystical answers (AI or fallback)
-- Animated, interactive magic ball
-- Sound effects and haptic feedback
-- Save and view question history
-- Share answers with friends
-- Modern, responsive UI with cosmic effects
-
-## 📝 Why This Project?
-This project was made to learn and practice:
-- API integration (Mistral AI)
-- Tailwind CSS for rapid UI
-- React context and hooks
-- Web Audio API for sound
-- Building a multi-page React app
+- `src/firebase.js` — Firebase initialization
+- `src/api.js` — Handles AI API calls and fallback answers
 
 ---
 
