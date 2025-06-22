@@ -4,6 +4,7 @@ import { History, Settings, Share2, Volume2, VolumeX, Smartphone, SmartphoneNfc 
 import MagicBall from '../components/MagicBall';
 import { useApp } from '../context/AppContext';
 import { getMistralResponse } from '../api';
+import SettingsModal from '../components/Settings';
 
 export default function Home() {
   const { addQuestion, settings, updateSettings, onlineUsers } = useApp();
@@ -13,6 +14,7 @@ export default function Home() {
   const [isTyping, setIsTyping] = useState(false);
   const [showAnswer, setShowAnswer] = useState(false);
   const [showShare, setShowShare] = useState(false);
+  const [showSettings, setShowSettings] = useState(false);
 
   const handleAskQuestion = async () => {
     if (!question.trim()) return;
@@ -98,14 +100,22 @@ export default function Home() {
           >
             <History size={20} />
           </Link>
-          <Link
-            to="/customize"
+          <button
+            onClick={() => setShowSettings(true)}
             className="p-2 rounded-full bg-white/10 backdrop-blur-sm text-white hover:bg-white/20 transition-colors"
+            aria-label="Open settings"
           >
             <Settings size={20} />
-          </Link>
+          </button>
         </div>
       </div>
+      {showSettings && (
+        <SettingsModal
+          settings={settings}
+          onChange={(key, value) => updateSettings({ [key]: value })}
+          onClose={() => setShowSettings(false)}
+        />
+      )}
       {/* Main content */}
       <div className="text-center max-w-md w-full space-y-8">
         {/* Title */}
@@ -190,4 +200,4 @@ export default function Home() {
       )}
     </div>
   );
-} 
+}

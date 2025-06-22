@@ -12,7 +12,6 @@ import CommunityFeed from './pages/CommunityFeed';
 import LivePulse from './pages/LivePulse';
 import Customize from './pages/Customize';
 import ShareReels from './pages/ShareReels';
-import app from './firebase';
 
 function App() {
   return (

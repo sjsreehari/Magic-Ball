@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Settings.css';
 import SignUpModal from './SignUpModal';
 
-function Settings({ settings, onChange, onClose }) {
+function SettingsModal({ settings, onChange, onClose }) {
   const [showSignUp, setShowSignUp] = useState(false);
 
   return (
@@ -12,13 +12,10 @@ function Settings({ settings, onChange, onClose }) {
         <div className="settings-title">⚙️ Settings</div>
         <div className="settings-list">
           <label className="settings-item">
-            <input type="checkbox" checked={settings.sound} onChange={e => onChange('sound', e.target.checked)} /> Sound Effects
+            <input type="checkbox" checked={settings.soundEnabled} onChange={e => onChange('soundEnabled', e.target.checked)} /> Sound Effects
           </label>
           <label className="settings-item">
-            <input type="checkbox" checked={settings.whisper} onChange={e => onChange('whisper', e.target.checked)} /> Whisper Mode
-          </label>
-          <label className="settings-item">
-            <input type="checkbox" checked={settings.music} onChange={e => onChange('music', e.target.checked)} /> Background Music
+            <input type="checkbox" checked={settings.hapticsEnabled} onChange={e => onChange('hapticsEnabled', e.target.checked)} /> Haptic Feedback
           </label>
           <button className="settings-item" style={{marginTop: 12}} onClick={() => setShowSignUp(true)}>
             Sign In / Sign Up
@@ -30,4 +27,4 @@ function Settings({ settings, onChange, onClose }) {
   );
 }
 
-export default Settings;
+export default SettingsModal;

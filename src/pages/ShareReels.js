@@ -3,7 +3,6 @@ import { Share2, Plus } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function ShareReels() {
-  const { settings } = useApp();
   const [reels, setReels] = useState([
     { text: 'The stars align for you!', date: 'Today' },
     { text: 'Trust your intuition.', date: 'Yesterday' },
@@ -58,4 +57,4 @@ export default function ShareReels() {
       </div>
     </div>
   );
-} 
+}

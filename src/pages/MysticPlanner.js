@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Calendar, Plus, Trash2 } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import SignUpModal from '../components/SignUpModal';
 
 export default function MysticPlanner() {
   const { planner, addPlannerItem, removePlannerItem, user } = useApp();
@@ -18,7 +19,6 @@ export default function MysticPlanner() {
   };
 
   if (showSignIn) {
-    const SignUpModal = require('../components/SignUpModal').default;
     return <SignUpModal onClose={() => setShowSignIn(false)} />;
   }
 

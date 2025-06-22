@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Search, Calendar, Download, Copy } from 'lucide-react';
 import { useApp } from '../context/AppContext';
+import SignUpModal from '../components/SignUpModal';
 
 export default function History() {
   const { questions, user } = useApp();
@@ -45,7 +46,6 @@ export default function History() {
   };
 
   if (showSignIn) {
-    const SignUpModal = require('../components/SignUpModal').default;
     return <SignUpModal onClose={() => setShowSignIn(false)} />;
   }
 

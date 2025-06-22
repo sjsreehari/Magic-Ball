@@ -3,7 +3,6 @@ import { Users, MessageCircle, Send } from 'lucide-react';
 import { useApp } from '../context/AppContext';
 
 export default function CommunityFeed() {
-  const { settings } = useApp();
   const [posts, setPosts] = useState([
     { user: 'Stargazer', message: 'The stars are bright tonight!', time: 'Just now' },
     { user: 'OracleFan', message: 'I got a great fortune today!', time: '2m ago' },
@@ -60,4 +59,4 @@ export default function CommunityFeed() {
       </div>
     </div>
   );
-} 
+}

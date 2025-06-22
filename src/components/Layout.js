@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import Navigation from './Navigation';
 import { useApp } from '../context/AppContext';
 import SignUpPage from './SignUpPage';
@@ -7,7 +7,6 @@ import SignUpPage from './SignUpPage';
 export default function Layout({ children }) {
   const { user, settings } = useApp();
   const location = useLocation();
-  const navigate = useNavigate();
 
   if (!user) {
     return <SignUpPage />;
