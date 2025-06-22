@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Settings.css';
-import SignUpModal from './SignUpModal';
+import { Link } from 'react-router-dom';
 
 function SettingsModal({ settings, onChange, onClose }) {
-  const [showSignUp, setShowSignUp] = useState(false);
-
   return (
     <div className="settings-overlay" onClick={onClose}>
       <div className="settings-modal glass" onClick={e => e.stopPropagation()} role="dialog" aria-modal="true" aria-label="Settings">
@@ -17,12 +15,14 @@ function SettingsModal({ settings, onChange, onClose }) {
           <label className="settings-item">
             <input type="checkbox" checked={settings.hapticsEnabled} onChange={e => onChange('hapticsEnabled', e.target.checked)} /> Haptic Feedback
           </label>
-          <button className="settings-item" style={{marginTop: 12}} onClick={() => setShowSignUp(true)}>
-            Sign In / Sign Up
-          </button>
+          <hr className="my-3" />
+          <Link to="/history" className="settings-item">History</Link>
+          <Link to="/planner" className="settings-item">Planner</Link>
+          <Link to="/community" className="settings-item">Community</Link>
+          <Link to="/customize" className="settings-item">Customize</Link>
+          <Link to="/share" className="settings-item">Share Reels</Link>
         </div>
       </div>
-      {showSignUp && <SignUpModal onClose={() => setShowSignUp(false)} />}
     </div>
   );
 }

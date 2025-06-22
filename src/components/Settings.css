@@ -79,10 +79,30 @@
 }
 @media (max-width: 600px) {
   .settings-modal {
-    min-width: 160px;
-    padding: 1rem 0.5rem 0.7rem 0.5rem;
+    min-width: 90vw;
+    max-width: 98vw;
+    padding: 0.7rem 0.2rem 0.7rem 0.2rem;
+    border-radius: 18px;
+  }
+  .settings-title {
+    font-size: 1.1rem;
+    margin-bottom: 0.7rem;
   }
   .settings-list {
     max-width: 99vw;
+    gap: 0.7rem;
   }
-} 
+  .settings-item {
+    font-size: 1rem;
+    padding: 0.5rem 0.7rem;
+    border-radius: 7px;
+    box-shadow: 0 1px 4px #8b5cf633;
+  }
+  .settings-close {
+    top: 0.5rem;
+    right: 0.7rem;
+    width: 1.7rem;
+    height: 1.7rem;
+    font-size: 1.1rem;
+  }
+}
